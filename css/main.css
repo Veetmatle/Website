@@ -1,0 +1,19 @@
+/* ============================================
+   MAIN STYLESHEET - imports all modules
+   ============================================ */
+
+/* Core */
+@import 'variables.css';
+@import 'base.css';
+
+/* Layout Components */
+@import 'navigation.css';
+@import 'hero.css';
+@import 'sections.css';
+@import 'projects.css';
+@import 'project-pages.css';
+@import 'footer.css';
+
+/* Effects & Utilities */
+@import 'animations.css';
+@import 'utilities.css';

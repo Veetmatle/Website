@@ -1,0 +1,31 @@
+/* ============================================
+   CSS VARIABLES
+   ============================================ */
+
+:root {
+    --color-primary: #1349ec;
+    --color-primary-hover: #2b5cf6;
+    --color-primary-glow: rgba(19, 73, 236, 0.3);
+    --color-bg-dark: #0a0e1a;
+    --color-bg-section: #0d111c;
+    --color-card: #141925;
+    --color-border: #1e2433;
+    --color-text-primary: #ffffff;
+    --color-text-secondary: #9ca3af;
+    --color-text-muted: #6b7280;
+    
+    --font-display: 'Poppins', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    
+    --transition-fast: 0.2s ease;
+    --transition-medium: 0.3s ease;
+    --transition-slow: 0.5s ease;
+    
+    --shadow-glow: 0 0 40px var(--color-primary-glow);
+    --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.4);
+    
+    --border-radius-sm: 0.5rem;
+    --border-radius-md: 0.75rem;
+    --border-radius-lg: 1rem;
+    --border-radius-xl: 1.5rem;
+}

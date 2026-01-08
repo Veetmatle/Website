@@ -1,0 +1,64 @@
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.animate-fade-in-up {
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.6s ease forwards;
+}
+
+.animate-delay-1 { animation-delay: 0.1s; }
+.animate-delay-2 { animation-delay: 0.2s; }
+.animate-delay-3 { animation-delay: 0.3s; }
+.animate-delay-4 { animation-delay: 0.4s; }
+
+.hero-text,
+.hero-image-wrapper,
+.skill-card,
+.project-card {
+    opacity: 0;
+}
+
+.page-loaded .hero-text {
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+.page-loaded .hero-image-wrapper {
+    animation: fadeInUp 0.8s ease 0.2s forwards;
+}
+
+.page-loaded .skill-card {
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.page-loaded .skill-card:nth-child(1) { animation-delay: 0.1s; }
+.page-loaded .skill-card:nth-child(2) { animation-delay: 0.2s; }
+.page-loaded .skill-card:nth-child(3) { animation-delay: 0.3s; }
+
+.page-loaded .project-card {
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.page-loaded .project-card:nth-child(1) { animation-delay: 0.1s; }
+.page-loaded .project-card:nth-child(2) { animation-delay: 0.2s; }
+.page-loaded .project-card:nth-child(3) { animation-delay: 0.3s; }
+.page-loaded .project-card:nth-child(4) { animation-delay: 0.4s; }
