@@ -1,4 +1,4 @@
-# Laskowski - Portfolio
+# Portfolio
 
 Strona wizytówka.
 
