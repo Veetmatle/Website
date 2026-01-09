@@ -106,36 +106,63 @@ function initProjectsScroll() {
     const prevBtn = document.querySelector('.projects-nav-btn.prev');
     const nextBtn = document.querySelector('.projects-nav-btn.next');
 
-    if (!container || !prevBtn || !nextBtn) return;
+    if (!container) return;
 
     const scrollAmount = 400;
 
     function updateButtons() {
+        if (!prevBtn || !nextBtn) return;
+        
         const maxScroll = container.scrollWidth - container.clientWidth;
         
         prevBtn.disabled = container.scrollLeft <= 0;
         nextBtn.disabled = container.scrollLeft >= maxScroll - 10;
     }
 
-    prevBtn.addEventListener('click', () => {
-        container.scrollBy({
-            left: -scrollAmount,
-            behavior: 'smooth'
+    if (prevBtn && nextBtn) {
+        prevBtn.addEventListener('click', () => {
+            container.scrollBy({
+                left: -scrollAmount,
+                behavior: 'smooth'
+            });
         });
-    });
 
-    nextBtn.addEventListener('click', () => {
-        container.scrollBy({
-            left: scrollAmount,
-            behavior: 'smooth'
+        nextBtn.addEventListener('click', () => {
+            container.scrollBy({
+                left: scrollAmount,
+                behavior: 'smooth'
+            });
         });
-    });
 
-    container.addEventListener('scroll', updateButtons);
-    updateButtons();
+        container.addEventListener('scroll', updateButtons);
+        updateButtons();
+        window.addEventListener('resize', updateButtons);
+    }
 
-    window.addEventListener('resize', updateButtons);
+    // Touch events for mobile swipe
+    let touchStartX = 0;
+    let touchEndX = 0;
+    let scrollStartLeft = 0;
+    
+    container.addEventListener('touchstart', (e) => {
+        touchStartX = e.touches[0].clientX;
+        scrollStartLeft = container.scrollLeft;
+    }, { passive: true });
+    
+    container.addEventListener('touchmove', (e) => {
+        if (!touchStartX) return;
+        
+        const touchCurrentX = e.touches[0].clientX;
+        const diff = touchStartX - touchCurrentX;
+        container.scrollLeft = scrollStartLeft + diff;
+    }, { passive: true });
+    
+    container.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].clientX;
+        touchStartX = 0;
+    }, { passive: true });
 
+    // Desktop mouse drag
     let isDown = false;
     let startX;
     let scrollLeft;

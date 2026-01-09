@@ -103,9 +103,63 @@
     color: var(--color-text-primary);
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
+    .contact {
+        padding: 80px 0 100px;
+    }
+    
+    .contact-content h2 {
+        font-size: 2rem;
+    }
+    
+    .contact-content > p {
+        font-size: 1rem;
+        padding: 0 1rem;
+    }
+    
+    .contact-email {
+        font-size: 0.9rem;
+        padding: 0.875rem 1.75rem;
+        word-break: break-all;
+        min-height: 48px;
+        touch-action: manipulation;
+    }
+    
+    .social-links {
+        flex-wrap: wrap;
+        margin-bottom: 3rem;
+    }
+    
+    .social-link {
+        width: 56px;
+        height: 56px;
+        touch-action: manipulation;
+    }
+    
     .footer-bottom {
         flex-direction: column;
         text-align: center;
+        gap: 1.5rem;
+        padding-bottom: 1rem;
+    }
+    
+    .footer-links {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact {
+        padding: 60px 0 90px;
+    }
+    
+    .contact-content h2 {
+        font-size: 1.75rem;
+    }
+    
+    .contact-email {
+        font-size: 0.8rem;
+        padding: 0.75rem 1.25rem;
     }
 }
