@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initMobileMenu();
     initProjectsScroll();
     initSmoothScroll();
+    initMobileCarousels();
 });
 
 /* ============================================
@@ -139,7 +140,6 @@ function initProjectsScroll() {
         window.addEventListener('resize', updateButtons);
     }
 
-    // Desktop mouse drag
     let isDown = false;
     let startX;
     let scrollLeft;
@@ -202,6 +202,118 @@ function initSmoothScroll() {
                 setTimeout(() => {
                     updateActiveNavLink();
                 }, 500);
+            }
+        });
+    });
+}
+
+/* ============================================
+   MOBILE CAROUSELS - ACTIVE CARD HIGHLIGHTING
+   + BLOKADA PRZESUWANIA PRZY SCROLLU PIONOWYM
+   ============================================ */
+function initMobileCarousels() {
+    const checkMobile = () => window.matchMedia('(max-width: 768px)').matches;
+    
+    const carouselContainers = [
+        document.querySelector('.projects-grid'),
+        document.querySelector('.skills-grid')
+    ].filter(Boolean);
+    
+    const allCardSets = [
+        { container: document.querySelector('.projects-grid'), cards: document.querySelectorAll('.project-card') },
+        { container: document.querySelector('.skills-grid'), cards: document.querySelectorAll('.skill-card') }
+    ].filter(set => set.container && set.cards.length > 0);
+    
+    // ==========================================
+    // BLOKADA PRZESUWANIA PRZY SCROLLU PIONOWYM
+    // ==========================================
+    carouselContainers.forEach(container => {
+        let startX = 0;
+        let startY = 0;
+        let isScrollingHorizontally = null;
+        
+        container.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+            startY = e.touches[0].clientY;
+            isScrollingHorizontally = null;
+        }, { passive: true });
+        
+        container.addEventListener('touchmove', (e) => {
+            if (!checkMobile()) return;
+            
+            const currentX = e.touches[0].clientX;
+            const currentY = e.touches[0].clientY;
+            const diffX = Math.abs(currentX - startX);
+            const diffY = Math.abs(currentY - startY);
+            
+            if (isScrollingHorizontally === null && (diffX > 5 || diffY > 5)) {
+                isScrollingHorizontally = diffX > diffY;
+            }
+            
+            if (isScrollingHorizontally === false) {
+                container.style.overflowX = 'hidden';
+            } else if (isScrollingHorizontally === true) {
+                container.style.overflowX = 'auto';
+            }
+        }, { passive: true });
+        
+        container.addEventListener('touchend', () => {
+            container.style.overflowX = 'auto';
+            isScrollingHorizontally = null;
+        }, { passive: true });
+    });
+    
+    // ==========================================
+    // PODŚWIETLANIE AKTYWNEJ KARTY
+    // ==========================================
+    function updateActiveCard(container, cards) {
+        if (!checkMobile() || !container) {
+            cards.forEach(card => card.classList.remove('active'));
+            return;
+        }
+        
+        const containerRect = container.getBoundingClientRect();
+        const containerCenter = containerRect.left + containerRect.width / 2;
+        
+        let closestCard = null;
+        let closestDistance = Infinity;
+        
+        cards.forEach(card => {
+            const cardRect = card.getBoundingClientRect();
+            const cardCenter = cardRect.left + cardRect.width / 2;
+            const distance = Math.abs(containerCenter - cardCenter);
+            
+            if (distance < closestDistance) {
+                closestDistance = distance;
+                closestCard = card;
+            }
+        });
+        
+        cards.forEach(card => card.classList.remove('active'));
+        
+        if (closestCard) {
+            closestCard.classList.add('active');
+        }
+    }
+    
+    allCardSets.forEach(({ container, cards }) => {
+        container.addEventListener('scroll', () => {
+            updateActiveCard(container, cards);
+        }, { passive: true });
+        
+        if (checkMobile() && cards.length > 0) {
+            cards[0].classList.add('active');
+        }
+        
+        setTimeout(() => updateActiveCard(container, cards), 100);
+    });
+    
+    window.addEventListener('resize', () => {
+        allCardSets.forEach(({ container, cards }) => {
+            if (checkMobile()) {
+                updateActiveCard(container, cards);
+            } else {
+                cards.forEach(card => card.classList.remove('active'));
             }
         });
     });
