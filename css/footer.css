@@ -105,29 +105,32 @@
 
 @media (max-width: 768px) {
     .contact {
-        padding: 80px 0 100px;
+        padding: 60px 0 90px;
     }
     
     .contact-content h2 {
-        font-size: 2rem;
+        font-size: 1.875rem;
+        margin-bottom: 1rem;
     }
     
     .contact-content > p {
-        font-size: 1rem;
+        font-size: 0.9375rem;
         padding: 0 1rem;
+        margin-bottom: 1.5rem;
     }
     
     .contact-email {
-        font-size: 0.9rem;
-        padding: 0.875rem 1.75rem;
+        font-size: 0.875rem;
+        padding: 0.75rem 1.5rem;
         word-break: break-all;
         min-height: 48px;
         touch-action: manipulation;
+        margin-bottom: 2rem;
     }
     
     .social-links {
         flex-wrap: wrap;
-        margin-bottom: 3rem;
+        margin-bottom: 0;
     }
     
     .social-link {

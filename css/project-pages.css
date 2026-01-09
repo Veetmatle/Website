@@ -158,3 +158,112 @@
         grid-template-columns: 1fr;
     }
 }
+
+@media (max-width: 768px) {
+    .project-page {
+        padding-top: 0;
+        padding-bottom: 72px;
+    }
+    
+    .project-hero {
+        padding: 40px 0 30px;
+    }
+    
+    .back-link {
+        margin-bottom: 1.5rem;
+        font-size: 0.875rem;
+    }
+    
+    .project-hero h1 {
+        font-size: 2rem;
+        margin-bottom: 1.25rem;
+    }
+    
+    .project-meta {
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .project-links {
+        gap: 0.75rem;
+    }
+    
+    .project-links .btn {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .project-details {
+        padding: 60px 0 40px;
+    }
+    
+    .project-details-grid {
+        gap: 2rem;
+    }
+    
+    .project-description h2 {
+        font-size: 1.375rem;
+        margin-bottom: 1.25rem;
+    }
+    
+    .project-description p {
+        font-size: 0.9375rem;
+    }
+    
+    .project-sidebar h3 {
+        font-size: 1rem;
+    }
+    
+    .project-gallery {
+        padding: 40px 0;
+    }
+    
+    .project-gallery h2 {
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+    }
+    
+    .gallery-grid {
+        gap: 1rem;
+    }
+    
+    .gallery-item {
+        aspect-ratio: 16/10;
+    }
+    
+    /* Contact/Footer section - dostosowane jak na stronie głównej */
+    .project-page .contact {
+        padding: 60px 0 90px;
+    }
+    
+    .project-page .contact-content h2 {
+        font-size: 1.875rem;
+        margin-bottom: 1rem;
+    }
+    
+    .project-page .contact-content > p {
+        font-size: 0.9375rem;
+        padding: 0 1rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .project-page .contact-email {
+        font-size: 0.875rem;
+        padding: 0.75rem 1.5rem;
+        word-break: break-all;
+        min-height: 48px;
+        touch-action: manipulation;
+        margin-bottom: 2rem;
+    }
+    
+    .project-page .social-links {
+        flex-wrap: wrap;
+        margin-bottom: 0;
+    }
+    
+    .project-page .social-link {
+        width: 56px;
+        height: 56px;
+        touch-action: manipulation;
+    }
+}

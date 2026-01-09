@@ -139,29 +139,6 @@ function initProjectsScroll() {
         window.addEventListener('resize', updateButtons);
     }
 
-    // Touch events for mobile swipe
-    let touchStartX = 0;
-    let touchEndX = 0;
-    let scrollStartLeft = 0;
-    
-    container.addEventListener('touchstart', (e) => {
-        touchStartX = e.touches[0].clientX;
-        scrollStartLeft = container.scrollLeft;
-    }, { passive: true });
-    
-    container.addEventListener('touchmove', (e) => {
-        if (!touchStartX) return;
-        
-        const touchCurrentX = e.touches[0].clientX;
-        const diff = touchStartX - touchCurrentX;
-        container.scrollLeft = scrollStartLeft + diff;
-    }, { passive: true });
-    
-    container.addEventListener('touchend', (e) => {
-        touchEndX = e.changedTouches[0].clientX;
-        touchStartX = 0;
-    }, { passive: true });
-
     // Desktop mouse drag
     let isDown = false;
     let startX;
@@ -212,7 +189,10 @@ function initSmoothScroll() {
             if (target) {
                 e.preventDefault();
                 
-                const offsetTop = target.offsetTop - 80; 
+                // Mniejszy offset dla mobile (nawigacja na dole)
+                const isMobile = window.innerWidth <= 768;
+                const offset = isMobile ? 20 : 80;
+                const offsetTop = target.offsetTop - offset; 
 
                 window.scrollTo({
                     top: offsetTop,
